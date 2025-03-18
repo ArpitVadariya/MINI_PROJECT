@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const fs = require("fs");
 
 // this both are parser.
 app.use(express.json());
@@ -13,8 +14,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 // routes
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", function (req, res) {
+  fs.readdir(`./files`, function (err, files) {
+    // console.log(files);
+    res.render("index", { files: files });
+  });
+});
+
+app.post("/create", function (req, res) {
+  console.log(req.body);
 });
 
 // dynamic routing
