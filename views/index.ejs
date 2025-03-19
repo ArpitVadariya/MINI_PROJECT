@@ -39,7 +39,14 @@
         <% if (files.length > 0) { %> <% files.forEach(function(value) { %>
         <div class="task w-72 px-3 py-4 rounded-md bg-zinc-800">
           <h1 class="text-white text-3xl tracking-tighter"><%= value %></h1>
-          <a class="text-blue-500 inline-block mt-3" href="/file/<%= value %>">Read More</a>
+          <div class="flex w-full justify-between items-center mt-3">
+            <a class="text-blue-500 inline-block" href="/file/<%= value %>"
+              >Read More</a
+            >
+            <a class="text-zinc-500 inline-block" href="/edit/<%= value %>"
+              >Edit</a
+            >
+          </div>
         </div>
         <% }) %> <% } else { %>
         <h3 class="text-zinc-600">No Tasks Yet</h3>
