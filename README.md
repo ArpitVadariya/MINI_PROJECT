@@ -16,7 +16,6 @@ This is a **mini project** on **Task Manager**, a web application designed to **
 
 ### 📂 **Files**  
 - Contains all **task files** as `.txt` documents.  
-- **Ignored in Git** using `.gitignore`.  
 
 ### 📂 **public** (Static Assets)  
 - Stores **CSS, JavaScript, and images** used in the frontend.  
@@ -36,5 +35,4 @@ This is a **mini project** on **Task Manager**, a web application designed to **
 - `server.js` – **Main entry point** to run the Node.js server.  
 - `package.json` – Lists **dependencies and scripts**.  
 - `README.md` – This documentation file.  
-
 ---
