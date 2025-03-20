@@ -7,7 +7,6 @@ This is a **mini project** on **Task Manager**, a web application designed to **
 ## 🚀 Features  
 ✅ **Create & List Tasks** – Users can add tasks with a title and description.  
 ✅ **Edit Task Name** – Modify task names easily through the UI.  
-✅ **Delete Tasks** – Remove tasks with a confirmation step.  
 ✅ **Enhanced UI** – Optimized design with AI-driven Tailwind CSS improvements.  
 ✅ **File-Based Storage** – Tasks are stored as `.txt` files inside the `Files/` folder.  
 
