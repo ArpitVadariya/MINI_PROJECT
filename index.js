@@ -56,6 +56,13 @@ app.get("/edit/:filename", function (req, res) {
   res.render("edit", { filename: req.params.filename });
 });
 
+app.get("/delete/:filename", function (req, res) {
+  fs.unlink(`./files/${req.params.filename}`, function (err) {
+    // console.log(`Task deleted: ${req.params.filename}`);
+    res.redirect("/");
+  });
+});
+
 // dynamic routing
 app.get("/profile/:name", (req, res) => {
   res.send(`Welcome ${req.params.name}`);
