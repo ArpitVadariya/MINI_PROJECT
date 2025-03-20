@@ -13,3 +13,28 @@ This is a **mini project** on **Task Manager**, a web application designed to **
 ---
 
 ## 📂 Folder Structure  
+
+### 📂 **Files**  
+- Contains all **task files** as `.txt` documents.  
+- **Ignored in Git** using `.gitignore`.  
+
+### 📂 **public** (Static Assets)  
+- Stores **CSS, JavaScript, and images** used in the frontend.  
+- `style.css` improves UI using **Tailwind CSS**.  
+- `script.js` contains any **frontend interactions** if needed.  
+
+### 📂 **views** (EJS Templates)  
+- `index.ejs` – Displays the **task form** and **task list**.  
+- `show.ejs` – Displays **task details** when clicking "Read More".  
+- `edit.ejs` – **Edit task name** through a form.  
+
+### 📂 **routes** (Express.js Routes)  
+- `tasks.js` – Handles **creating, viewing, editing, and deleting tasks**.  
+
+### **Other Files:**  
+- `.gitignore` – Prevents `.txt` files in `Files/` from being committed.  
+- `server.js` – **Main entry point** to run the Node.js server.  
+- `package.json` – Lists **dependencies and scripts**.  
+- `README.md` – This documentation file.  
+
+---
