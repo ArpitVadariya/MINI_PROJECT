@@ -3,56 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index File</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Task Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="main w-full-width min-h-screen bg-zinc-900">
-      <div class="form p-10 text-white">
-        <form action="/create" method="post">
+  <body
+    class="bg-gradient-to-r from-blue-900 via-teal-800 to-green-800 text-white min-h-screen flex flex-col items-center"
+  >
+    <div class="container mx-auto p-6">
+      <!-- Header -->
+      <h1
+        class="text-4xl font-extrabold text-center text-yellow-400 mb-8 drop-shadow-lg"
+      >
+        📌 Task Manager
+      </h1>
+
+      <!-- Task Form -->
+      <div
+        class="max-w-2xl mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-white/20"
+      >
+        <h2 class="text-2xl font-semibold mb-4 text-yellow-300">
+          Add a New Task
+        </h2>
+        <form action="/create" method="post" class="space-y-4">
           <input
-            class="block px-5 py-2 bg-zinc-800 w-full rounded-md outline-none"
+            class="w-full p-3 bg-white/20 text-white rounded-md outline-none focus:ring-2 focus:ring-emerald-400 placeholder-white/60"
             type="text"
-            placeholder="Title goes here"
+            placeholder="Enter task title"
             name="title"
+            required
           />
           <textarea
-            class="block mt-2 px-5 py-2 bg-zinc-800 resize-none w-full rounded-md outline-none"
-            placeholder="Write Your Task here"
+            class="w-full p-3 bg-white/20 text-white rounded-md outline-none resize-none focus:ring-2 focus:ring-emerald-400 placeholder-white/60"
+            placeholder="Write task details..."
             name="details"
+            required
           ></textarea>
-          <input
-            class="mt-2 bg-blue-600 px-y py-2 rounded-md"
-            type="submit"
-            value="Create Task"
-          />
+          <button
+            class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-md transition duration-200 shadow-lg"
+          >
+            Create Task
+          </button>
         </form>
       </div>
-      <div class="tasks flex gap-3 flex-wrap p-10">
-        <div class="task w-72 hidden px-3 py-4 rounded-md bg-zinc-800">
-          <h1 class="text-white text-3xl tracking-tighter">
-            Some Task goes here
-          </h1>
-          <a class="text-blue-500 iline-block mt-3" href="">Read More</a>
-        </div>
-        <% if (files.length > 0) { %> <% files.forEach(function(value) { %>
-        <div class="task w-72 px-3 py-4 rounded-md bg-zinc-800">
-          <h1 class="text-white text-3xl tracking-tighter"><%= value %></h1>
-          <div class="flex w-full justify-between items-center mt-3">
-            <a class="text-blue-500 inline-block" href="/file/<%= value %>"
-              >Read More</a
-            >
-            <a class="text-zinc-500 inline-block" href="/edit/<%= value %>"
-              >Edit</a
-            >
+
+      <!-- Task List -->
+      <div class="mt-10 w-full">
+        <h2 class="text-2xl font-semibold mb-4 text-center text-yellow-300">
+          Your Tasks
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% if (files.length > 0) { %> <% files.forEach(function(value) { %>
+          <div
+            class="task bg-white/10 backdrop-blur-lg p-5 rounded-lg shadow-xl border border-white/20 transform transition hover:scale-105"
+          >
+            <h1 class="text-xl font-bold truncate text-white"><%= value %></h1>
+            <div class="flex justify-between items-center mt-3">
+              <a
+                class="text-emerald-400 hover:text-emerald-300"
+                href="/file/<%= value %>"
+                >Read More</a
+              >
+              <a
+                class="text-red-400 hover:text-red-300"
+                href="/edit/<%= value %>"
+                >Edit Task Name</a
+              >
+            </div>
           </div>
+          <% }) %> <% } else { %>
+          <p class="text-gray-300 text-center">No tasks added yet.</p>
+          <% } %>
         </div>
-        <% }) %> <% } else { %>
-        <h3 class="text-zinc-600">No Tasks Yet</h3>
-        <% } %>
       </div>
     </div>
+    <script src="/javascripts/script.js"></script>
   </body>
-  <script src="/javascripts/script.js"></script>
 </html>

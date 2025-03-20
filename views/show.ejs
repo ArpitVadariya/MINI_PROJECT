@@ -3,18 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index File</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Task Details</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="main w-full-width min-h-screen bg-zinc-900 text-white">
-      <a class="text-blue-500 inline-block mb-10" href="/"
-        >Go Back to Home Page</a
+  <body
+    class="bg-gradient-to-r from-blue-900 via-teal-800 to-green-800 text-white min-h-screen flex flex-col items-center justify-center"
+  >
+    <div class="container mx-auto p-6">
+      <!-- Go Back Button -->
+      <a
+        href="/"
+        class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-md transition duration-200 shadow-lg"
       >
-      <h1 class="text-3xltracking-tighter"><%= filename %></h1>
-      <p class="text-xl mt-2"><%= filedata %></p>
+        ⬅️ Go Back to Home
+      </a>
+
+      <!-- Task Details Card -->
+      <div
+        class="max-w-2xl mx-auto mt-10 bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-white/20"
+      >
+        <h1 class="text-3xl font-bold text-yellow-300"><%= filename %></h1>
+        <p
+          class="text-xl mt-2 break-words whitespace-pre-line leading-relaxed text-left"
+        >
+          <%= filedata %>
+        </p>
+      </div>
     </div>
+
+    <script src="/javascripts/script.js"></script>
   </body>
-  <script src="/javascripts/script.js"></script>
 </html>
