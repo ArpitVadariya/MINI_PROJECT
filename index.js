@@ -6,7 +6,13 @@ const PORT = process.env.PORT || 3000;
 
 require("dotenv").config();
 
-// Middleware for parsing request body
+// Ensure 'files' directory exists
+const filesDir = path.join(__dirname, "files");
+if (!fs.existsSync(filesDir)) {
+  fs.mkdirSync(filesDir);
+}
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,10 +24,10 @@ app.set("view engine", "ejs");
 
 // Home Route - Display all tasks
 app.get("/", function (req, res) {
-  fs.readdir("./files", function (err, files) {
+  fs.readdir(filesDir, function (err, files) {
     if (err) {
       console.error("Error reading files directory:", err);
-      return res.render("index", { files: [] }); // Ensure files is always an array
+      return res.render("index", { files: [] });
     }
     res.render("index", { files });
   });
@@ -30,7 +36,7 @@ app.get("/", function (req, res) {
 // Create Task
 app.post("/create", function (req, res) {
   const filename = req.body.title.split(" ").join("") + ".txt";
-  fs.writeFile(`./files/${filename}`, req.body.details, function (err) {
+  fs.writeFile(path.join(filesDir, filename), req.body.details, function (err) {
     if (err) {
       console.error("Error creating file:", err);
     }
@@ -41,8 +47,8 @@ app.post("/create", function (req, res) {
 // Edit Task Name
 app.post("/edit", function (req, res) {
   fs.rename(
-    `./files/${req.body.previous}`,
-    `./files/${req.body.new}`,
+    path.join(filesDir, req.body.previous),
+    path.join(filesDir, req.body.new),
     function (err) {
       if (err) {
         console.error("Error renaming file:", err);
@@ -55,26 +61,21 @@ app.post("/edit", function (req, res) {
 // View Task Details
 app.get("/file/:filename", function (req, res) {
   fs.readFile(
-    `./files/${req.params.filename}`,
+    path.join(filesDir, req.params.filename),
     "utf-8",
     function (err, filedata) {
       if (err) {
         console.error("Error reading file:", err);
-        return res.redirect("/"); // Redirect if the file doesn't exist
+        return res.redirect("/");
       }
       res.render("show", { filename: req.params.filename, filedata });
     }
   );
 });
 
-// Edit Page Route
-app.get("/edit/:filename", function (req, res) {
-  res.render("edit", { filename: req.params.filename });
-});
-
 // Delete Task
 app.get("/delete/:filename", function (req, res) {
-  fs.unlink(`./files/${req.params.filename}`, function (err) {
+  fs.unlink(path.join(filesDir, req.params.filename), function (err) {
     if (err) {
       console.error("Error deleting file:", err);
     }
