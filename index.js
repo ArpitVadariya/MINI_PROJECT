@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const fs = require("fs");
+const PORT = process.env.PORT || 3000;
+
+require("dotenv").config();
 
 // this both are parser.
 app.use(express.json());
@@ -63,15 +66,6 @@ app.get("/delete/:filename", function (req, res) {
   });
 });
 
-// dynamic routing
-app.get("/profile/:name", (req, res) => {
-  res.send(`Welcome ${req.params.name}`);
-});
-app.get("/author/:name/:age", (req, res) => {
-  //   res.send(req.params);
-  res.send(`Welcome ${req.params.name} of age ${req.params.age}`);
-});
-
-app.listen(3000, function () {
-  console.log("its running");
+app.listen(PORT, function () {
+  console.log(`Server is running on port ${PORT}`);
 });
