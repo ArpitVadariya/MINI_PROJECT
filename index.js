@@ -45,17 +45,8 @@ app.post("/create", function (req, res) {
 });
 
 // Edit Task Name
-app.post("/edit", function (req, res) {
-  fs.rename(
-    path.join(filesDir, req.body.previous),
-    path.join(filesDir, req.body.new),
-    function (err) {
-      if (err) {
-        console.error("Error renaming file:", err);
-      }
-      res.redirect("/");
-    }
-  );
+app.get("/edit/:filename", function (req, res) {
+  res.render("edit", { filename: req.params.filename });
 });
 
 // View Task Details
