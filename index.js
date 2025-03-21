@@ -49,6 +49,19 @@ app.get("/edit/:filename", function (req, res) {
   res.render("edit", { filename: req.params.filename });
 });
 
+app.post("/edit/:filename", function (req, res) {
+  fs.rename(
+    path.join(__dirname, "files", req.params.filename),
+    path.join(__dirname, "files", req.body.new),
+    function (err) {
+      if (err) {
+        console.error("Error renaming file:", err);
+      }
+      res.redirect("/");
+    }
+  );
+});
+
 // View Task Details
 app.get("/file/:filename", function (req, res) {
   fs.readFile(

@@ -23,7 +23,11 @@
         class="max-w-2xl mx-auto mt-10 bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-xl border border-white/20"
       >
         <h1 class="text-3xl font-bold text-yellow-300">Edit Task</h1>
-        <form action="/edit" method="post" class="space-y-4 mt-4">
+        <form
+          action="/edit/<%= filename %>"
+          method="post"
+          class="space-y-4 mt-4"
+        >
           <label class="block text-white/80">Previous Task Name</label>
           <input
             class="w-full p-3 bg-white/20 text-white rounded-md outline-none focus:ring-2 focus:ring-emerald-400 placeholder-white/60"
